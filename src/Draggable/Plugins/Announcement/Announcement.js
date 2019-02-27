@@ -173,6 +173,6 @@ function createRegion() {
 }
 
 // Append live region element as early as possible
-document.addEventListener('DOMContentLoaded', () => {
+window.addYoloCustomEventListener('DOMContentLoaded', () => {
   document.body.appendChild(liveRegion);
 });

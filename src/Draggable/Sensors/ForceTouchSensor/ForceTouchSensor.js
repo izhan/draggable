@@ -51,8 +51,8 @@ export default class ForceTouchSensor extends Sensor {
       container.addEventListener('webkitmouseforcechanged', this[onMouseForceChange], false);
     }
 
-    document.addEventListener('mousemove', this[onMouseMove]);
-    document.addEventListener('mouseup', this[onMouseUp]);
+    window.addYoloCustomEventListener('mousemove', this[onMouseMove]);
+    window.addYoloCustomEventListener('mouseup', this[onMouseUp]);
   }
 
   /**
@@ -66,8 +66,8 @@ export default class ForceTouchSensor extends Sensor {
       container.removeEventListener('webkitmouseforcechanged', this[onMouseForceChange], false);
     }
 
-    document.removeEventListener('mousemove', this[onMouseMove]);
-    document.removeEventListener('mouseup', this[onMouseUp]);
+    window.removeYoloCustomEventListener('mousemove', this[onMouseMove]);
+    window.removeYoloCustomEventListener('mouseup', this[onMouseUp]);
   }
 
   /**

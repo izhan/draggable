@@ -59,14 +59,14 @@ export default class DragSensor extends Sensor {
    * Attaches sensors event listeners to the DOM
    */
   attach() {
-    document.addEventListener('mousedown', this[onMouseDown], true);
+    window.addYoloCustomEventListener('mousedown', this[onMouseDown], true);
   }
 
   /**
    * Detaches sensors event listeners to the DOM
    */
   detach() {
-    document.removeEventListener('mousedown', this[onMouseDown], true);
+    window.removeYoloCustomEventListener('mousedown', this[onMouseDown], true);
   }
 
   /**
@@ -145,7 +145,7 @@ export default class DragSensor extends Sensor {
       return;
     }
 
-    document.removeEventListener('mouseup', this[onMouseUp], true);
+    window.removeYoloCustomEventListener('mouseup', this[onMouseUp], true);
 
     const target = document.elementFromPoint(event.clientX, event.clientY);
     const container = this.currentContainer;
@@ -193,11 +193,11 @@ export default class DragSensor extends Sensor {
       this.nativeDraggableElement = nativeDraggableElement;
     }
 
-    document.addEventListener('mouseup', this[onMouseUp], true);
-    document.addEventListener('dragstart', this[onDragStart], false);
-    document.addEventListener('dragover', this[onDragOver], false);
-    document.addEventListener('dragend', this[onDragEnd], false);
-    document.addEventListener('drop', this[onDrop], false);
+    window.addYoloCustomEventListener('mouseup', this[onMouseUp], true);
+    window.addYoloCustomEventListener('dragstart', this[onDragStart], false);
+    window.addYoloCustomEventListener('dragover', this[onDragOver], false);
+    window.addYoloCustomEventListener('dragend', this[onDragEnd], false);
+    window.addYoloCustomEventListener('drop', this[onDrop], false);
 
     const target = closest(event.target, this.options.draggable);
 
@@ -228,11 +228,11 @@ export default class DragSensor extends Sensor {
   [reset]() {
     clearTimeout(this.mouseDownTimeout);
 
-    document.removeEventListener('mouseup', this[onMouseUp], true);
-    document.removeEventListener('dragstart', this[onDragStart], false);
-    document.removeEventListener('dragover', this[onDragOver], false);
-    document.removeEventListener('dragend', this[onDragEnd], false);
-    document.removeEventListener('drop', this[onDrop], false);
+    window.removeYoloCustomEventListener('mouseup', this[onMouseUp], true);
+    window.removeYoloCustomEventListener('dragstart', this[onDragStart], false);
+    window.removeYoloCustomEventListener('dragover', this[onDragOver], false);
+    window.removeYoloCustomEventListener('dragend', this[onDragEnd], false);
+    window.removeYoloCustomEventListener('drop', this[onDrop], false);
 
     if (this.nativeDraggableElement) {
       this.nativeDraggableElement.draggable = true;

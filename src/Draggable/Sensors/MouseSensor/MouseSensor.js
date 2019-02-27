@@ -54,14 +54,14 @@ export default class MouseSensor extends Sensor {
    * Attaches sensors event listeners to the DOM
    */
   attach() {
-    document.addEventListener('mousedown', this[onMouseDown], true);
+    window.addYoloCustomEventListener('mousedown', this[onMouseDown], true);
   }
 
   /**
    * Detaches sensors event listeners to the DOM
    */
   detach() {
-    document.removeEventListener('mousedown', this[onMouseDown], true);
+    window.removeYoloCustomEventListener('mousedown', this[onMouseDown], true);
   }
 
   /**
@@ -74,7 +74,7 @@ export default class MouseSensor extends Sensor {
       return;
     }
 
-    document.addEventListener('mouseup', this[onMouseUp]);
+    window.addYoloCustomEventListener('mouseup', this[onMouseUp]);
 
     const target = document.elementFromPoint(event.clientX, event.clientY);
     const container = closest(target, this.containers);
@@ -83,7 +83,7 @@ export default class MouseSensor extends Sensor {
       return;
     }
 
-    document.addEventListener('dragstart', preventNativeDragStart);
+    window.addYoloCustomEventListener('dragstart', preventNativeDragStart);
 
     this.mouseDown = true;
 
@@ -107,8 +107,8 @@ export default class MouseSensor extends Sensor {
       this.dragging = !dragStartEvent.canceled();
 
       if (this.dragging) {
-        document.addEventListener('contextmenu', this[onContextMenuWhileDragging]);
-        document.addEventListener('mousemove', this[onMouseMove]);
+        window.addYoloCustomEventListener('contextmenu', this[onContextMenuWhileDragging]);
+        window.addYoloCustomEventListener('mousemove', this[onMouseMove]);
       }
     }, this.options.delay);
   }
@@ -149,8 +149,8 @@ export default class MouseSensor extends Sensor {
       return;
     }
 
-    document.removeEventListener('mouseup', this[onMouseUp]);
-    document.removeEventListener('dragstart', preventNativeDragStart);
+    window.removeYoloCustomEventListener('mouseup', this[onMouseUp]);
+    window.removeYoloCustomEventListener('dragstart', preventNativeDragStart);
 
     if (!this.dragging) {
       return;
@@ -168,8 +168,8 @@ export default class MouseSensor extends Sensor {
 
     this.trigger(this.currentContainer, dragStopEvent);
 
-    document.removeEventListener('contextmenu', this[onContextMenuWhileDragging]);
-    document.removeEventListener('mousemove', this[onMouseMove]);
+    window.removeYoloCustomEventListener('contextmenu', this[onContextMenuWhileDragging]);
+    window.removeYoloCustomEventListener('mousemove', this[onMouseMove]);
 
     this.currentContainer = null;
     this.dragging = false;

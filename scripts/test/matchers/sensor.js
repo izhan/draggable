@@ -5,9 +5,9 @@ function toHaveTriggeredSensorEvent(received, expectedEventName) {
     triggered = true;
   }
 
-  document.addEventListener(expectedEventName, callback);
+  window.addYoloCustomEventListener(expectedEventName, callback);
   received();
-  document.removeEventListener(expectedEventName, callback);
+  window.removeYoloCustomEventListener(expectedEventName, callback);
 
   const pass = Boolean(triggered);
 
@@ -28,9 +28,9 @@ function toHaveCanceledSensorEvent(received, expectedEventName) {
     canceled = event.detail.canceled();
   }
 
-  document.addEventListener(expectedEventName, callback);
+  window.addYoloCustomEventListener(expectedEventName, callback);
   received();
-  document.removeEventListener(expectedEventName, callback);
+  window.removeYoloCustomEventListener(expectedEventName, callback);
 
   const pass = Boolean(canceled);
 

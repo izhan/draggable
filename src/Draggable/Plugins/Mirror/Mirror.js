@@ -130,7 +130,7 @@ export default class Mirror extends AbstractPlugin {
     }
 
     if ('ontouchstart' in window) {
-      document.addEventListener('scroll', this[onScroll], true);
+      window.addYoloCustomEventListener('scroll', this[onScroll], true);
     }
 
     this.initialScrollOffset = {
@@ -201,7 +201,7 @@ export default class Mirror extends AbstractPlugin {
 
   [onDragStop](dragEvent) {
     if ('ontouchstart' in window) {
-      document.removeEventListener('scroll', this[onScroll], true);
+      window.removeYoloCustomEventListener('scroll', this[onScroll], true);
     }
 
     this.initialScrollOffset = {x: 0, y: 0};

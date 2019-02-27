@@ -137,10 +137,10 @@ export default class Draggable {
     this[onDragStop] = this[onDragStop].bind(this);
     this[onDragPressure] = this[onDragPressure].bind(this);
 
-    document.addEventListener('drag:start', this[onDragStart], true);
-    document.addEventListener('drag:move', this[onDragMove], true);
-    document.addEventListener('drag:stop', this[onDragStop], true);
-    document.addEventListener('drag:pressure', this[onDragPressure], true);
+    window.addYoloCustomEventListener('drag:start', this[onDragStart], true);
+    window.addYoloCustomEventListener('drag:move', this[onDragMove], true);
+    window.addYoloCustomEventListener('drag:stop', this[onDragStop], true);
+    window.addYoloCustomEventListener('drag:pressure', this[onDragPressure], true);
 
     const defaultPlugins = Object.values(Draggable.Plugins).map((Plugin) => Plugin);
     const defaultSensors = [MouseSensor, TouchSensor];
@@ -163,10 +163,10 @@ export default class Draggable {
    * deactivates sensors and plugins
    */
   destroy() {
-    document.removeEventListener('drag:start', this[onDragStart], true);
-    document.removeEventListener('drag:move', this[onDragMove], true);
-    document.removeEventListener('drag:stop', this[onDragStop], true);
-    document.removeEventListener('drag:pressure', this[onDragPressure], true);
+    window.removeYoloCustomEventListener('drag:start', this[onDragStart], true);
+    window.removeYoloCustomEventListener('drag:move', this[onDragMove], true);
+    window.removeYoloCustomEventListener('drag:stop', this[onDragStop], true);
+    window.removeYoloCustomEventListener('drag:pressure', this[onDragPressure], true);
 
     const draggableDestroyEvent = new DraggableDestroyEvent({
       draggable: this,

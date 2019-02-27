@@ -189,20 +189,20 @@ describe('Draggable', () => {
     });
 
     it('should remove all sensor event listeners', () => {
-      document.removeEventListener = jest.fn();
+      window.removeYoloCustomEventListener = jest.fn();
 
       const newInstance = new Draggable();
 
       newInstance.destroy();
 
-      const mockCalls = document.removeEventListener.mock.calls;
+      const mockCalls = window.removeYoloCustomEventListener.mock.calls;
 
       expect(mockCalls[0][0]).toEqual('drag:start');
       expect(mockCalls[1][0]).toEqual('drag:move');
       expect(mockCalls[2][0]).toEqual('drag:stop');
       expect(mockCalls[3][0]).toEqual('drag:pressure');
 
-      document.removeEventListener.mockRestore();
+      window.removeYoloCustomEventListener.mockRestore();
     });
   });
 

@@ -74,14 +74,14 @@ export default class TouchSensor extends Sensor {
    * Attaches sensors event listeners to the DOM
    */
   attach() {
-    document.addEventListener('touchstart', this[onTouchStart]);
+    window.addYoloCustomEventListener('touchstart', this[onTouchStart]);
   }
 
   /**
    * Detaches sensors event listeners to the DOM
    */
   detach() {
-    document.removeEventListener('touchstart', this[onTouchStart]);
+    window.removeYoloCustomEventListener('touchstart', this[onTouchStart]);
   }
 
   /**
@@ -96,9 +96,9 @@ export default class TouchSensor extends Sensor {
       return;
     }
 
-    document.addEventListener('touchmove', this[onTouchMove]);
-    document.addEventListener('touchend', this[onTouchEnd]);
-    document.addEventListener('touchcancel', this[onTouchEnd]);
+    window.addYoloCustomEventListener('touchmove', this[onTouchMove]);
+    window.addYoloCustomEventListener('touchend', this[onTouchEnd]);
+    window.addYoloCustomEventListener('touchcancel', this[onTouchEnd]);
     container.addEventListener('contextmenu', onContextMenu);
 
     this.currentContainer = container;
@@ -170,9 +170,9 @@ export default class TouchSensor extends Sensor {
     this.touchMoved = false;
     preventScrolling = false;
 
-    document.removeEventListener('touchend', this[onTouchEnd]);
-    document.removeEventListener('touchcancel', this[onTouchEnd]);
-    document.removeEventListener('touchmove', this[onTouchMove]);
+    window.removeYoloCustomEventListener('touchend', this[onTouchEnd]);
+    window.removeYoloCustomEventListener('touchcancel', this[onTouchEnd]);
+    window.removeYoloCustomEventListener('touchmove', this[onTouchMove]);
 
     if (this.currentContainer) {
       this.currentContainer.removeEventListener('contextmenu', onContextMenu);
