@@ -100,7 +100,7 @@ export default class Announcement extends AbstractPlugin {
    * @param {String} message
    */
   [announceMessage](message) {
-    announce(message, {expire: this.options.expire});
+    announce(message, { expire: this.options.expire });
   }
 
   /**
@@ -139,7 +139,7 @@ const liveRegion = createRegion();
  * @param {Object} options
  * @param {Number} options.expire
  */
-function announce(message, {expire}) {
+function announce(message, { expire }) {
   const element = document.createElement('div');
 
   element.textContent = message;
@@ -173,6 +173,6 @@ function createRegion() {
 }
 
 // Append live region element as early as possible
-window.addYoloCustomEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(liveRegion);
 });
