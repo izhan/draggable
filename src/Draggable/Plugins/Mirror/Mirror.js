@@ -292,6 +292,7 @@ export default class Mirror extends AbstractPlugin {
       initialX: this.initialX,
       initialY: this.initialY,
       scrollOffset: this.scrollOffset,
+      source: mirrorEvent.source,
     };
 
     return Promise.resolve(initialState).then(positionMirror({ raf: true }));
